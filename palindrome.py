@@ -23,18 +23,20 @@ def checkPalindrome(pos, line):
     # We are looking at the previous and next chars that we haven't seen yet
     # If they are not alphanumeric, we skip it
     nextNeg = line[pos - countNeg]
-#   if not nextNeg.isalnum():
-#     countNeg = countNeg + 1
-#     continue
+    if not nextNeg.isalnum():
+      countNeg = countNeg + 1
+      continue
     nextPos = line[pos + countPos]
-#   if not nextPos.isalnum():
-#     countPos = countPos + 1
-#     continue
+    if not nextPos.isalnum():
+      countPos = countPos + 1
+      continue
 
     # We have confirmed the positions of the previous and next characters
     # Compare to see if they are equal
-    if nextNeg == nextPos:
+    if nextNeg.lower() == nextPos.lower():
       result = line[pos - countNeg:pos + countPos + 1]
+      countNeg = countNeg + 1
+      countPos = countPos + 1
     else:
       break
 
@@ -72,17 +74,18 @@ def main():
     pos = 1
     length = 1
     longest = 1
+    tmpStr = ""
     longestStr = ""
 
     # Logic: Look at each character and
     # check if it's the middle of a palindrome
     # skip the first character, as it can never be the center of a palindrome
     for char in line[1:]:
-      longestStr = checkPalindrome(pos, line)
-      length = len(longestStr)
+      tmpStr = checkPalindrome(pos, line)
+      length = len(tmpStr)
       if length > longest:
         longest = length
-        longestStr = line[pos - (longest // 2):pos + (longest // 2)]
+        longestStr = tmpStr
       pos = pos + 1
 
     # By this point we've found the longest palindrome.

@@ -30,7 +30,7 @@ def main():
       continue
 
     # At this point, we've gotten the two input words
-    # Let's normalize and sort each one, and see if they matche exactly
+    # Let's normalize and sort each one, and see if they match exactly
     word1 = inputWords.group(1).replace(" ", "").lower()
     word1 = sorted(word1)
     word2 = inputWords.group(2).replace(" ", "").lower()
